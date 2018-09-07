@@ -21,14 +21,15 @@ resources:
   properties:
 
     #Cluster Config
-    prefix: my-swarm
-    zone: us-central1-f
+    prefix: test
+    zone: asia-south1-b
 
     #Manager Config
     manager_machine_type: n1-standard-1
-    manager_disk: 100
+    manager_disk: 10
+    manager_num: 2
 
     #Worker Config
     num: 2
     worker_machine_type: n1-standard-1
-    worker_disk: 100
+    worker_disk: 10

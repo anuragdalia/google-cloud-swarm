@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # 	Copyright 2016, Google, Inc.
 #  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use this file except in compliance with the License.
@@ -10,6 +11,24 @@
 #  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
+
+options=( $(ls keys | xargs -0) )
+
+PS3="Please select a project: "
+select file in "${options[@]}" "Quit" ; do
+    if (( REPLY == 1 + ${#options[@]} )) ; then
+        exit
+
+    elif (( REPLY > 0 && REPLY <= ${#options[@]} )) ; then
+        export GOOGLE_APPLICATION_CREDENTIALS=keys/$file
+        filename="${file%.*}"
+        gcloud config set project $filename
+        break
+
+    else
+        echo "Invalid option. Try another one."
+    fi
+done
 
 # get cluster info from options.yaml
 PREFIX=$(awk '{for(i=1;i<=NF;i++) if ($i=="prefix:") print $(i+1)}' options.yaml)

@@ -11,6 +11,9 @@ See the License for the specific language governing permissions and
 limitations under the License.
 #}
 
+
+
+
 resources:
 - name: {{ properties["prefix"] }}-manager
   type: compute.v1.instance
@@ -21,7 +24,7 @@ resources:
     - deviceName: boot
       type: PERSISTENT
       boot: true
-      autoDelete: true
+      autoDelete: false
       initializeParams:
         diskSizeGb: {{ properties["disk"] }}
         sourceImage: projects/ubuntu-os-cloud/global/images/ubuntu-1604-xenial-v20160610

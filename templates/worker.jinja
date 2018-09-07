@@ -32,7 +32,7 @@ resources:
       - deviceName: boot
         type: PERSISTENT
         boot: true
-        autoDelete: true
+        autoDelete: false
         initializeParams:
           diskSizeGb: {{ properties["disk"] }}
           sourceImage: projects/ubuntu-os-cloud/global/images/ubuntu-1604-xenial-v20160610
