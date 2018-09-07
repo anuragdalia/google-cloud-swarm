@@ -8,7 +8,7 @@ Scripts to create and manage a Docker Swarm cluster on Google Cloud Platform.
 ### Before you start
 - Make sure you create a [Google Cloud Project](http://console.cloud.google.com/project)
 - You need to enable Google Cloud Deployment Manager V2 API using [this](https://console.developers.google.com/apis/api/deploymentmanager.googleapis.com) link.
-- Also add server-to-server credentials json file in the keys folder with the json file name as the project name
+- Also add server-to-server credentials json file in the keys folder with project name as json file name
 <br><br>example:<br>&nbsp;&nbsp;&nbsp;&nbsp;project name = projectxyz-app
 <br>&nbsp;&nbsp;&nbsp;&nbsp;credentials file should be saved like this
 <br>&nbsp;&nbsp;&nbsp;&nbsp;**keys/projectxyz-app.json**
@@ -59,3 +59,8 @@ Docker-Machine is used to connect to the Manager node over a secure TLS connecti
 - This is not an official Google product
 - This is not an official Docker product
 - Only tested on OSX
+
+
+#Next
+- Multiple Managers
+- More control
