@@ -7,8 +7,11 @@ Scripts to create and manage a Docker Swarm cluster on Google Cloud Platform.
 
 ### Before you start
 - Make sure you create a [Google Cloud Project](http://console.cloud.google.com/project)
-
 - You need to enable Google Cloud Deployment Manager V2 API using [this](https://console.developers.google.com/apis/api/deploymentmanager.googleapis.com) link.
+- Also add server-to-server credentials json file in the keys folder with the json file name as the project name
+<br><br>example:<br>&nbsp;&nbsp;&nbsp;&nbsp;project name = projectxyz-app
+<br>&nbsp;&nbsp;&nbsp;&nbsp;credentials file should be saved like this
+<br>&nbsp;&nbsp;&nbsp;&nbsp;**keys/projectxyz-app.json**
 
 Login: 
 
@@ -16,13 +19,15 @@ Login:
 
 ### Create a Cluster
    `./swarm-up.sh`
-   
-   By default, this will create a cluster with one manager and two workers. You can edit this and more options in the [options.yaml](options.yaml) file.
+   <br>Choose the project    
+   <br>By default, this will create a cluster with one manager and two workers. You can edit this and more options in the [options.yaml](options.yaml) file.
 ### Delete a Cluster
    `./swarm-down.sh`
 
+   <br>Choose the project    
 ### Resize a Cluster
    `./swarm-resize.sh <NUM_WORKERS>`
+    <br>Choose the project    
 
 ### Options
 Edit the [options.yaml](options.yaml) file to specify your options.
