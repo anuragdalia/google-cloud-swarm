@@ -1,11 +1,10 @@
 # google-cloud-swarm
 Scripts to create and manage a Docker Swarm cluster on Google Cloud Platform.
-### Prerequisites
+#### Prerequisites
 - [Docker 1.12](https://docs.docker.com/engine/installation/)
 - [Docker-Machine 0.8.0](https://docs.docker.com/machine/install-machine/)
 - [Google Cloud SDK](http://cloud.google.com/sdk)
-
-### Before you start
+#### Before you start
 - Make sure you create a [Google Cloud Project](http://console.cloud.google.com/project)
 - You need to enable Google Cloud Deployment Manager V2 API using [this](https://console.developers.google.com/apis/api/deploymentmanager.googleapis.com) link.
 - Also add server-to-server credentials json file in the keys folder with project name as json file name
@@ -15,24 +14,23 @@ Scripts to create and manage a Docker Swarm cluster on Google Cloud Platform.
 
 Login: 
 
-`gcloud init`
-
-### Create a Cluster
+```bash
+$ gcloud init
+```
+#### Create a Cluster
    `./swarm-up.sh`
    <br>Choose the project    
    <br>By default, this will create a cluster with one manager and two workers. You can edit this and more options in the [options.yaml](options.yaml) file.
-### Delete a Cluster
+#### Delete a Cluster
    `./swarm-down.sh`
 
    <br>Choose the project    
-### Resize a Cluster
+#### Resize a Cluster
    `./swarm-resize.sh <NUM_WORKERS>`
     <br>Choose the project    
-
-### Options
+#### Options
 Edit the [options.yaml](options.yaml) file to specify your options.
-
-## Cluster Config
+#### Cluster Config
 
 - Cluster Configuration Options
   - `prefix` = All nodes in the Swarm will start with this Prefix. This allows you to have multiple Swarms in the same project.
@@ -45,7 +43,7 @@ Edit the [options.yaml](options.yaml) file to specify your options.
   - `worker_machine_type` = [Google Cloud Machine Type](https://cloud.google.com/compute/docs/machine-types#standard_machine_types) for the Worker nodes - *default: n1-standard-1*
   - `worker_disk` = Disk size in GB for the Worker nodes - *default: 100*
 
-## How it works
+#### How it works
 
 These scripts are simple wrappers around a set of Deployment Manager templates.
 
@@ -55,12 +53,19 @@ This allows you to dynamically scale the number of workers as well as easily cre
 
 Docker-Machine is used to connect to the Manager node over a secure TLS connection
 
-##### Notes:
+#### Notes:
 - This is not an official Google product
 - This is not an official Docker product
 - Only tested on OSX
 
+#### Fault Tolerance
+```bash
+#!/usr/bin/env bash
+for i in $(docker node ls --format {{.Hostname}} -f role=worker);
+do 
+  docker node promote ${i};
+done
+```
 
-#Next
-- Multiple Managers
+#### Next
 - More control
